@@ -1,5 +1,5 @@
 <h1>Một số hình ảnh trong ứng dụng</h1>
-<img src="https://upanh.tv/image/r4t5Da"> 
+https://upanh.tv/image/r4t5Da
 
 
 
