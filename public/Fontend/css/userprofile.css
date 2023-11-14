@@ -1,0 +1,101 @@
+.x1 {
+    text-align: center;
+    color: rgba(0, 0, 0, 0.8);
+    line-height: 1.2;
+}
+.x4 {
+    text-align: center;
+}
+
+.centered-form {
+    text-align: center;
+}
+
+.form-x {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+}
+
+.form-input input[type="text"] {
+    margin-bottom: 10px; /* Thêm khoảng cách giữa các trường input */
+    padding: 10px;
+    background-color: #f0f0f0;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.form-input label {
+    font-weight: bold;
+}
+
+.a3 button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.a3 button:hover {
+    background-color: #0056b3;
+}
+.profile-menu ul {
+
+    margin-top: 25px;
+    width: 200px;
+    list-style: none;
+    padding: 0;
+}
+
+.profile-menu ul li {
+    width: 100%;
+    margin-left: 150px;
+    padding: 0;
+    text-align: left;
+}
+
+.profile-menu ul li a {
+    text-decoration: none;
+    display: block;
+    padding: 10px 10px;
+    color: #333;
+    margin-right: 50px;
+}
+
+.profile-menu ul li a i {
+    margin-right: 10px;
+}
+
+.profile-menu ul li a:hover {
+    background-color: #f0f0f0;
+}
+
+/* CSS cho tab được chọn (đang ở trang hiện tại) */
+.profile-menu ul li.active a {
+    background-color: #007bff;
+    color: #fff;
+}
+.col-sm-4 {
+    text-align: center;
+}
+.user-container{
+    text-align: center;
+    background: white;
+}
+.info-title{
+    text-align: left;
+}
+.Sb123{
+    font-size: 20px;
+    font-weight: normal;
+}
+.button-click{
+    width: 100px;
+    margin-left: 150px;
+}
+.aa{
+    color: blue;
+}
