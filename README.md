@@ -1,5 +1,3 @@
-<h1>Một số hình ảnh trong ứng dụng</h1>
-
 # Một số hình ảnh trong ứng dụng
 
 ## Một số chức năng của admin
