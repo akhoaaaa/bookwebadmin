@@ -1,6 +1,6 @@
-<?php 
+<?php
 include "connect.php";
-$query = "SELECT * FROM `sanpham` ORDER BY id DESC LIMIT 8";
+$query = "SELECT * FROM `sanpham` WHERE `status` = 1 ORDER BY id DESC LIMIT 8";
 $data = mysqli_query($conn,$query);
 $result = array();
 while ($row = mysqli_fetch_assoc($data)) {
@@ -21,6 +21,6 @@ if (!empty($result)) {
 		'result' => $result
 	];
 }
-print_r(json_encode($arr));	
+print_r(json_encode($arr));
 
 ?>

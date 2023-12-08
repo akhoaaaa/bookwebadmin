@@ -1,9 +1,10 @@
 @extends('welcome')
 @section('content')
-    <section id="form"><div class="container">
+    <section id="form">
+        <div class="container">
             <div class="d-flex justify-content-top">
                 <div class="login-form">
-                    <form action="{{URL::to('/checklogin')}}" method="post">
+                    <form action="{{URL::to('/checklogin')}}" method="post" style="background: white;margin: 0 auto;width: 450px;padding: 20px;">
                         {{csrf_field()}}
                         <h2>Đăng nhập tải khoản</h2>
                         <?php
@@ -34,18 +35,6 @@
                         </p>
                     </form>
 
-                    <style>
-                        form {
-                            background: white;
-                            margin: 0 auto;
-                            width: 500px;
-                            padding: 20px;
-                        }
-                        .btn {
-                            margin-top: 10px;
-                            margin-left: 150px;
-                        }
-                    </style>
                 </div></div>
         </div>
     </section>

@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use DB;
 use Session;
 use Illuminate\Support\Facades\Redirect;
-session_start();
 
 class HomeController extends Controller
 {
@@ -21,7 +20,6 @@ class HomeController extends Controller
         if ($search_product->isEmpty()) {
             return view('pages.product.search')->with('search_product', $search_product)->with('noResults', true);
         }
-
         return view('pages.product.search')->with('search_product', $search_product);
     }
 

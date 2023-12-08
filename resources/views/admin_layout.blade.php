@@ -42,9 +42,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--header start-->
 <header class="header fixed-top clearfix">
 <!--logo start-->
-<div class="brand" href="{{URL::to('/dashboard')}}">
+<div class="brand" href="{{URL::to('/dashboard')}}" style="width: 100px">
     <a href="{{URL::to('/dashboard')}}">
-        <img src="{{asset('public/fontend/images/admin.png')}} "alt="Sidebar toggle icon" style="height: 50px ;margin-top: 20px;margin-left: 40px">
+        <img src="{{asset('public/fontend/images/admin.png')}} "alt="Sidebar toggle icon" style="height: 50px ;margin-top: 20px;margin-left: 10px">
     </a>
 </div>
 {{-- logo end --}}
@@ -71,7 +71,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <ul class="dropdown-menu extended logout">
                 <li><a href="#"><i class=" fa fa-suitcase"></i>Profile</a></li>
                 <li><a href="#"><i class="fa fa-cog"></i> Settings</a></li>
-                <li><a href="{{ URL::to('/logout') }}"><i class="fa fa-key"></i> Đăng Xuất</a></li>
+                <li><a href="{{ URL::to('/logout-admin') }}"><i class="fa fa-key"></i> Đăng Xuất</a></li>
             </ul>
         </li>
         <!-- user users dropdown end -->
@@ -88,10 +88,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <!-- sidebar menu start-->
         <div class="leftside-navigation">
             <ul class="sidebar-menu" id="nav-accordion">
-                <div class="#">
+                <div class="#" style="margin-top: 30px">
                     <p class="admin">Thống Kê</p>
                 <li>
-                    <a class="active" href="{{URL::to ('/dashboard') }}">
+                    <a href="{{URL::to ('/dashboard') }}">
                         <i class="fa fa-dashboard"></i>
                         <span>Dashboard</span>
                     </a>
@@ -109,6 +109,27 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <li><a href="{{ URL::to	('/manager-order') }}">Quản Lý Đơn Hàng</a></li>
                     </ul>
                 </li>
+                </div>
+                <div class="#">
+                    <p class="admin">Quản Lý Người Dùng</p>
+                    <li class="sub-menu">
+                        <a href="javascript:;">
+                            <i class="fas fa-user"></i>
+                            <span>User</span>
+                        </a>
+                        <ul class="sub">
+                            <li><a href="{{ URL::to	('/all-user') }}">Liệt Kê Tài Khoản</a></li>
+                        </ul>
+                    </li>
+                    <li class="sub-menu">
+                        <a href="javascript:;">
+                            <i class="fas fa-comment"></i>
+                            <span>Comment</span>
+                        </a>
+                        <ul class="sub">
+                            <li><a href="{{ URL::to	('/all-comment') }}">Liệt Kê Comment</a></li>
+                        </ul>
+                    </li>
                 </div>
 
                 <div class="#">

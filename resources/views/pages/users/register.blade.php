@@ -3,7 +3,7 @@
     <section id="form"><div class="container">
             <div class="d-flex justify-content-center">
                 <div class="login-form">
-                    <form action="{{URL::to('/add-user')}}" method="POST">
+                    <form action="{{URL::to('/add-user')}}" method="POST" style="background: white;margin: 0 auto;width: 450px;padding: 20px;">
                         {{csrf_field()}}
                         @foreach($errors->all() as $val)
                             <ul>
@@ -52,18 +52,7 @@
                         </p>
                     </form>
 
-                    <style>
-                        form {
-                            background: white;
-                            margin: 0 auto;
-                            width: 500px;
-                            padding: 20px;
-                        }
-                        .btn {
-                            margin-top: 10px;
-                            margin-left: 150px;
-                        }
-                    </style>
                 </div></div>
         </div>
-    </section>@endsection
+    </section>
+@endsection

@@ -13,8 +13,15 @@ session_start();
 class UserController extends Controller
 {
     public function User($iduser){
+        if (Session::has('id')){
+
         $user = DB::table('user')->where('id',$iduser)->get();
         return view('pages.users.userpage')->with('user',$user);
+        }
+
+        else{
+            return redirect('trang-chu');
+        }
     }
     public function save_info(Request $request,$iduser){
         if (Session::has('id')){
@@ -53,8 +60,6 @@ class UserController extends Controller
                     'same' => 'nhập lại mật khẩu trùng với mật khẩu mới',
                 ]
             );
-
-
             if ($validator->fails()) {
                 return Redirect::back()
                     ->withErrors($validator)
@@ -83,6 +88,7 @@ class UserController extends Controller
         return Redirect::to('login');
     }
     public function order(){
+        if (Session::has('id')){
         $donhang = DB::table('donhang')
             ->join('chitietdonhang', 'donhang.id', '=', 'chitietdonhang.iddonhang')
             ->join('sanpham', 'chitietdonhang.idsp', '=', 'sanpham.id')
@@ -100,24 +106,58 @@ class UserController extends Controller
                 ->get();
             $order->items = $items;
         }
-
         return view('pages.users.order', compact('donhang',));
+        }
+        else{
+            return redirect('trang-chu');
+        }
     }
     public function cancel_order($iddonhang){
-        $order = DB::table('donhang')->where('id',$iddonhang)->first();
-            return view('pages.users.cancel-order')->with('order',$order);
-
+        if (Session::has('id')){
+            $order = DB::table('donhang')->where('id',$iddonhang)->first();
+            if ($order->status==1){
+                return view('pages.users.cancel-order')->with('order',$order);
+            }else{
+                return redirect('order');
+            }
+        }else{
+            return redirect('trang-chu');
+        }
     }
     public function unactive_order($iddonhang,Request $request){
-        $order = DB::table('donhang')->where('id',$iddonhang)->first();
-        if ($order && $order->cancel == null){
-            $cancel = $request->input('cancel');
-            DB::table('donhang')->where('id', $iddonhang)->update(['cancel' => $cancel,'status'=>'2']);
-
-            return redirect('order')->with('message', 'Hủy đơn hàng thành công');
-        } else {
-            return redirect('order');
+        if (Session::has('id')){
+            $order = DB::table('donhang')->where('id',$iddonhang)->first();
+            if ($order && $order->status == 1){
+                $cancel = $request->input('cancel');
+                DB::table('donhang')->where('id', $iddonhang)->update(['cancel' => $cancel,'status'=>'2']);
+                return redirect('order')->with('message', 'Hủy đơn hàng thành công');
+            } else {
+                return redirect('order');
+            }
+        }else{
+            return redirect('trang-chu');
         }
+
+    }
+    public function all_user(){
+        if (Session::has('id')&& Session::get('chucnang') === 'quanly') {
+            $user = DB::table('user')->where('chucnang', 'user')->get();
+            return view('admin.all_user')->with('user', $user);
+        }else{
+            return Redirect::to('admin');
+        }
+    }
+    public function delete_user($iduser){
+        if (Session::has('id')&& Session::get('chucnang') === 'quanly') {
+            DB::table('user')->where('id', $iduser)->delete();
+            Session::put('message', 'Xóa người dùng thành công');
+            return Redirect::to('all-user');
+
+        }
+        else{
+            return Redirect::to('admin');
+        }
+
     }
 
 }

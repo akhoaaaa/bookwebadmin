@@ -26,39 +26,47 @@
 
             <div class="shopper-informations">
                 <div class="row" style="background: white; padding: 10px;">
+
                     <div class="col-sm-3">
+
                         <div class="shopper-info">
                             <p>Điền thông tin đặt hàng</p>
-                            <form action="{{URL::to('/save-checkout')}}" method="POST" id="checkoutForm">
-                                {{csrf_field()}}
+                            <form action="{{URL::to('/save-checkout')}}" method="POST">
+
+                            {{csrf_field()}}
                                 <input type="text" name="email" placeholder="Email" value="{{session('email')}}" readonly>
                                 <input type="text" name="username" placeholder="Họ và tên" value="{{session('username')}}" readonly>
                                 <input type="text" name="sdt" placeholder="Phone" value="{{session('sdt')}}" readonly>
                                 <input type="text" name="diachi" placeholder="Địa chỉ nhận hàng">
-                                <button type="button" class="btn btn-primary btn-sm" id="confirmOrderButton">Xác nhận đặt hàng</button>
+                                <button type="submit" class="btn btn-primary btn-sm">Xác nhận đặt hàng</button>
                                 <div class="payment-options" style="margin-top: 20px">
-                                    <div class="form-group">
-                                        <label for="exampleInputPassword1"> Chọn Hình Thức Thanh Toán </label>
-                                        <select name="payment" id="payment_select" class="form form-control input-sm m-bot15 payment_select">
-                                            <option value="0">Thanh Toán Khi Nhận Hàng</option>
-                                            <option value="1">Chuyển Khoản</option>
-                                        </select>
+                                    <h4 class="mb-3">Vui lòng chọn phương thức thanh toán</h4>
+                                    <div class="d-block my-3">
+                                        <div class="custom-control custom-radio">
+                                            <input id="cod" name="payment" type="radio" class="custom-control-input" value="0">
+                                            <label class="custom-control-label" for="cod">Thanh toán khi nhận hàng</label>
+                                        </div>
+
+                                        <div class="custom-control custom-radio">
+                                            <input id="momo" name="payment" type="radio" class="custom-control-input" value="1">
+                                            <label class="custom-control-label" for="momo" name="payUrl">Thanh Toán Qua Momo</label>
+                                        </div>
+
+{{--                                        <div class="custom-control custom-radio">--}}
+{{--                                            <input id="paymentZaloPay" name="payment" type="radio" class="custom-control-input" value="2">--}}
+{{--                                            <label class="custom-control-label" for="paymentZaloPay"></label>--}}
+{{--                                        </div>--}}
                                     </div>
                                 </div>
 
-                            <div id="confirmModal" style="display: none;">
-                                <p style="font-weight: bold">Xác nhận đặt hàng?</p>
-                                <button id="confirmButton">Xác nhận</button>
-                                <button id="cancelButton">Hủy</button>
-                            </div>
                         </div>
                     </div>
-                    <div class="col-sm-4">
-                        <div class="order-message">
-                            <p>Ghi chú</p>
-                            <textarea name="note" placeholder="Ghi chú đơn hàng của bạn" rows="16"></textarea>
-                        </div>
-                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="order-message">
+                                            <p>Ghi chú</p>
+                                            <textarea name="note" placeholder="Ghi chú đơn hàng của bạn" rows="16"></textarea>
+                                        </div>
+                                    </div>
                     </form>
                 </div>
             </div>
@@ -163,27 +171,5 @@
             </div>
         </div>
     </section> <!--/#cart_items-->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var confirmButton = document.getElementById('confirmButton');
-            var cancelButton = document.getElementById('cancelButton');
-            var checkoutButton = document.getElementById('confirmOrderButton');
-            var confirmModal = document.getElementById('confirmModal');
-            var checkoutForm = document.getElementById('checkoutForm');
 
-            checkoutButton.addEventListener('click', function(event) {
-                event.preventDefault();
-                confirmModal.style.display = 'block';
-            });
-
-            confirmButton.addEventListener('click', function() {
-                checkoutForm.submit();
-                confirmModal.style.display = 'none';
-            });
-
-            cancelButton.addEventListener('click', function() {
-                confirmModal.style.display = 'none';
-            });
-        });
-    </script>
 @endsection

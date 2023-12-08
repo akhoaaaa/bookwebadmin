@@ -11,6 +11,7 @@ use App\Http\Controllers\CheckOutController;
 use App\Http\Controllers\ResetPassController;
 use App\Http\Controllers\CouponController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CommentController;
 
 
 
@@ -42,8 +43,14 @@ Route::get('/chitiet-sanpham/{idproduct}',[ProductController::class,'detail_prod
 //Backend
 Route::get('/admin',[AdminController::class,'index']);
 Route::get('/dashboard',[AdminController::class,'show_dashboard']);
-Route::get('/logout',[AdminController::class,'logout']);
+Route::get('/doanhthu',[AdminController::class,'doanhthu']);
+Route::get('/logout-admin',[AdminController::class,'logout_admin']);
 Route::post('/admin-dashboard',[AdminController::class,'dashboard']);
+
+
+//user-admin
+Route::get('all-user',[UserController::class,'all_user']);
+Route::get('/delete-user/{iduser}',[UserController::class,'delete_user']);
 
 //category
 Route::get('/add-category-product',[categoryProduct::class,'add_category_product']);
@@ -61,7 +68,7 @@ Route::post('/update-category-product/{iddanhmuc}',[categoryProduct::class,'upda
 //product
 Route::get('/add-product',[ProductController::class,'add_product']);
 Route::get('/all-product',[ProductController::class,'all_product']);
-
+Route::get('/detail/{idproduct}',[ProductController::class,'detail_productadmin']);
 
 Route::get('/unactive-product/{idproduct}',[ProductController::class,'unactive_product']);
 Route::get('/active-product/{idproduct}',[ProductController::class,'active_product']);
@@ -75,7 +82,6 @@ Route::post('/update-product/{idproduct}',[ProductController::class,'update_prod
 //type
 Route::get('/add-type',[TheLoaiProduct::class,'add_type']);
 Route::get('/all-type',[TheLoaiProduct::class,'all_type']);
-
 
 Route::get('/unactive-type/{idloai}',[TheLoaiProduct::class,'unactive_type']);
 Route::get('/active-type/{idloai}',[TheLoaiProduct::class,'active_type']);
@@ -125,14 +131,21 @@ Route::get('/unactive-coupon/{idma}',[CouponController::class,'unactive_coupon']
 Route::get('/active-coupon/{idma}',[CouponController::class,'active_coupon']);
 Route::get('/delete-coupon/{idma}',[CouponController::class,'delete_coupon']);
 
-//user
+//user-UI
 Route::get('/user/{iduser}',[UserController::class,'User'])->name('user.show');
 Route::get('/order',[UserController::class,'order']);
 Route::get('/password',[UserController::class,'Password']);
 Route::get('/cancel-order/{iddonhang}',[UserController::class,'cancel_order']);
+
 Route::post('/unactive-order/{iddonhang}',[UserController::class,'unactive_order']);
 
 Route::post('/update-password', [UserController::class,'update_password']);
 Route::post('/save-info/{iduser}',[UserController::class,'save_info']);
 
 
+//Comment
+Route::post('/upload-comment/{productid}',[CommentController::class,'upload_comment']);
+Route::post('/reply-comment/{idcomment}',[CommentController::class,'reply_comment']);
+Route::get('/all-comment',[CommentController::class,'all_comment']);
+Route::get('/unactive-comment/{idcomment}',[CommentController::class,'unactive_comment']);
+Route::get('/active-comment/{idcomment}',[CommentController::class,'active_comment']);

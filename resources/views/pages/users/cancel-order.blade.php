@@ -19,7 +19,7 @@
 
                 <div class="x2">
                 <p>Vui Lòng Chọn Lý Do Hủy Đơn Hàng</p>
-                <select id="cancel" name="cancel" style="background: #F5F5F5">
+                <select id="cancel" name="cancel" style="background: #F5F5F5; margin-bottom: 10px">
                     <option value="0">Sản phẩm không khả dụng</option>
                     <option value="1">Thay đổi ý định mua</option>
                     <option value="2">Tôi Muốn Đổi Địa Chỉ</option>

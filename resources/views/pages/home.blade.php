@@ -12,7 +12,7 @@
                             <div class="productinfo text-center">
 
                                 <img src="{{URL::to('public/uploads/product/'.$product->hinhanh)}}" alt="" width="300" height="300" />
-                                <h2>{{($product->tensp)}}</h2>
+                                <h2>{{mb_strtoupper($product->tensp)}}</h2>
                                 <p>{{number_format($product->giasp) }} VNĐ</p>
 
                                 @if ($product->soluongtonkho === 0)

@@ -1,11 +1,17 @@
 @extends('admin_layout')
 @section('admin_content')
-<div class="table-agile-info">
+    <script src="https://unpkg.com/unorm/lib/unorm.js"></script>
+
+    <div class="table-agile-info">
   <div class="panel panel-default">
     <div class="panel-heading">
       Liệt kê sản phẩm
     </div>
 
+      <div class="search_box">
+          <label for="search">Tìm Kiếm:</label>
+          <input type="text" id="search" placeholder="Nhập từ khóa...">
+      </div>
     <div class="table-responsive">
         <?php
                         $message = Session::get('message');
@@ -21,22 +27,20 @@
             <th>Tên sản phẩm</th>
               <th>Giá sản phẩm</th>
             <th>Hình Ảnh</th>
-            <th>Số lượng tồn kho</th>
               <th>Thể Loại</th>
             <th>Trạng Thái</th>
               <th>Edit</th>
               <th>Delete</th>
-            <th style="width:30px;"></th>
+              <th>Chi tiết</th>
           </tr>
         </thead>
         <tbody>
             @foreach($all_product as $key => $pro)
           <tr>
-            <td>{{ $pro ->tensp }}</td>
+            <td><a href="{{URL::to('/chitiet-sanpham/'.$pro->id)}}">{{ $pro ->tensp }}</a></td>
               <td>{{ $pro ->giasp }}</td>
             <td><img src="public/uploads/product/{{ $pro ->hinhanh }}" height="75" width="75" ></td>
 
-            <td>{{ $pro ->soluongtonkho }}</td>
               <td>{{ $pro ->tentheloai }}</td>
 
             <td><span class="text-ellipsis">
@@ -49,6 +53,12 @@
                 ?>
                 <a href = "{{ URL::to('/active-product/'.$pro -> id) }}"><span> Ẩn</span></a>
                 <?php
+                }
+                if ($pro->soluongtonkho==0){
+                ?>
+                    <p>Hết Hàng</p>
+
+                        <?php
                 }
                 ?>
             </span></td>
@@ -64,6 +74,7 @@
                     }
                 </script>
             </td>
+              <td><a href="{{URL::to('detail/'.$pro->id)}}">Xem chi tiết</a></td>
           </tr>
           @endforeach
         </tbody>
@@ -96,5 +107,17 @@
         background-color: #f2f2f2;
     }
 </style>
+    <script>
+        $(document).ready(function(){
+            // Xử lý sự kiện khi nhập từ khóa tìm kiếm
+            $('#search').on('input', function(){
+                var searchText = unorm.nfkd($(this).val().toLowerCase());
+                $('table tbody tr').filter(function(){
+                    var rowText = unorm.nfkd($(this).text().toLowerCase());
+                    $(this).toggle(rowText.indexOf(searchText) > -1);
+                });
+            });
+        });
+    </script>
 
 @endsection

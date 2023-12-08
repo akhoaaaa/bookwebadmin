@@ -25,8 +25,8 @@
                         <div class="single-products">
                             <div class="productinfo text-center">
                                 <img src="{{URL::to('public/uploads/product/'.$product->hinhanh)}}" alt="" height="350" width="300"/>
-                                <p>{{($product->tensp)}}</p>
-                                <h2>{{number_format($product->giasp) }} VNĐ</h2>
+                                <h2>{{mb_strtoupper($product->tensp)}}</h2>
+                                <p>{{number_format($product->giasp) }} VNĐ</p>
 
                                 <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm Giỏ Hàng</a>
                             </div>
@@ -35,8 +35,15 @@
                 </div>
                 </a>
             @endforeach
+
         @else
             <p>Không có sản phẩm nào.</p>
         @endif
     </div><!--features_items-->
+    <div aria-label="Page navigation" class="asdadwed">
+
+        {{$allproduct->links()}}
+
+    </div>
+
 @endsection

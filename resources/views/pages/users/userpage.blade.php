@@ -14,12 +14,6 @@
     </div>
 
     <div class="col-sm-4" style="background: white;margin-bottom: 25px;margin-top: 25px;width: 60%;">
-        <div class="info-title">
-            <h1 class="Sb123">Chi Tiết Đơn Hàng</h1>
-            <div class="x2">
-                <p>Thông tin chi tiết về đơn hàng mà bạn đã đặt</p>
-            </div>
-        </div>
         <div class="col-sm-4" style="background: white;margin-bottom: 25px;margin-top: 25px;width: 60%">
             <div class="info-title">
             <h1 class="Sb123">Hồ Sơ Của Tôi</h1>

@@ -9,7 +9,7 @@ include "connect.php";
 $loai = $_POST['loai'];
 
 
-$query = 'SELECT * FROM `sanpham` WHERE `loai`= '.$loai;
+$query = 'SELECT * FROM `sanpham` WHERE `loai` = '.$loai.' AND `status` = 1';
 
 $data = mysqli_query($conn, $query);
 $result = array();

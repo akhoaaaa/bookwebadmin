@@ -19,8 +19,8 @@
     <div class="col-sm-7">
         <div class="product-information"><!--/product-information-->
             <img src="images/product-details/new.jpg" class="newarrival" alt="" />
-            <h2>{{$value->tensp}}</h2>
-            <p>Tác giả:  {{$value->tacgia}}</p>
+            <h2>{{mb_strtoupper($value->tensp)}}</h2>
+            <h2 style="font-size: 15px">Tác giả:  {{$value->tacgia}}</h2>
             <img src="images/product-details/rating.png" alt="" />
             <form action="{{URL::to('/save-cart')}}" method="POST">
                 {{csrf_field()}}
@@ -53,42 +53,106 @@
 </div><!--/product-details-->
 
 
-<div class="category-tab shop-details-tab"><!--category-tab-->
+<div class="category-tab shop-details-tab" style="background: white"><!--category-tab-->
+
     <div class="col-sm-12">
         <ul class="nav nav-tabs">
             <li class="active" ><a href="#details" data-toggle="tab">Chi tiết sản phẩm</a></li>
-            <li ><a href="#reviews" data-toggle="tab">Nhận Xét</a></li>
+            <li ><a href="#comment" data-toggle="tab">Bình Luận</a></li>
         </ul>
     </div>
     <div class="tab-content">
+        @if(session()->has('message'))
+            <div class="alert alert-success">
+                {{session()->get('message')}}
+            </div>
+        @elseif(session()->has('error'))
+            <div class="alert alert-danger">
+                {{session()->get('error')}}
+            </div>
+        @endif
+
         <div class="tab-pane fade active in" id="details" >
-            <p>{!!$value -> mota!!}</p>
+            <p style="margin-left: 10px">{!!$value -> mota!!}</p>
         </div>
 
-        <div class="tab-pane fade" id="reviews" >
-            <div class="col-sm-12">
-                <ul>
-                    <li><a href=""><i class="fa fa-user"></i>EUGEN</a></li>
-                    <li><a href=""><i class="fa fa-clock-o"></i>12:41 PM</a></li>
-                    <li><a href=""><i class="fa fa-calendar-o"></i>31 DEC 2014</a></li>
-                </ul>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                <p><b>Write Your Review</b></p>
+        <div class="tab-pane fade" id="comment" >
+            @if($comment->count()>0)
+            @foreach($comment as $key => $cmt)
+            <div class="fa-comment" style="margin-bottom: 5px" >
+                <div class="username" style="display: flex;">
+                    <h3 style="color: #1b6d85; margin-left: 15px;font-size: 15px">{{$cmt->username}}</h3>
+                    <span class="comment-user"><?php
+                                                                        $timestamp = strtotime($cmt->created_at);
+                                                                        $formattedDate = date("d/m/Y", $timestamp);
+                                                                        echo $formattedDate;
 
-                <form action="#">
-										<span>
-											<input type="text" placeholder="Your Name"/>
-											<input type="email" placeholder="Email Address"/>
-										</span>
-                    <textarea name="" ></textarea>
-                    <b>Rating: </b> <img src="images/product-details/rating.png" alt="" />
-                    <button type="button" class="btn btn-default pull-right">
-                        Submit
-                    </button>
-                </form>
+                                                                        ?></span>
+                </div>
+                <div class="comment" style="border-radius: 3px;border: 1px dashed #1b6d85;padding: 10px;text-align: left;font-weight: normal;margin-left: 10px;margin-right: 10px">
+                    <p style="display: block;margin: 0" class="comment-useradd">{{$cmt->comment}}</p>
+                    @if(Session::has('chucnang') && Session::get('chucnang') == 'quanly')
+                        <a href="#" class="reply-link"><i class="fa fa-solid fa-reply" style="margin-right: 5px"></i>Reply</a>
+                        <div class="reply-container" style="display: none;">
+                            <form id="replyForm" action="{{URL::to('reply-comment/'.$cmt->id)}}" method="post">
+                                {{csrf_field()}}
+                                <textarea name="comment_reply" class="form-control" placeholder="Nhập reply của bạn"></textarea>
+                                <button type="submit">Reply</button>
+                            </form>
+                        </div>
+                    @endif
+                    <div class="admin-replycomment">
+                        @foreach($cmt->replies ?? [] as $admin)
+                                <div class="admin-info" >
+                                <p style="margin: 0" class="asdwqe">{{$admin->username}}</p>
+                                <span style="margin-left: 10px;padding: 4px" class="dwewe">QTV</span>
+                                <span  class="reply-timeeea">
+                                    <?php
+                                        $timestamp = strtotime($admin->create_time);
+                                        $formattedDate = date("d/m/Y", $timestamp);
+                                        echo $formattedDate;
+
+                                        ?>
+
+                                        </span>
+                            </div>
+                            <div class="admin-content">
+                                <p  class="asdwqedf">{{$admin->comment_reply}}</p>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+            @endforeach
+                <div aria-label="Page navigation" class="asdadwed">
+
+                    {{$comment->links()}}
+
+                </div>
+
+            @else
+                <p style="margin-left: 15px"><b>Không có bình luận nào</b></p>
+            @endif
+                <div class="col-sm-12" style="margin-top: 15px">
+                @if(Session::has('id'))
+                <ul>
+                        <li style="color: white"><i class="fa fa-user" style="margin-left: 10px"></i> xin chào: {{Session::get('username')}}</li>
+                </ul>
+                @endif
+                    @if(Session::has('id'))
+                    <form action="{{URL::to('upload-comment/'.$value->id)}}" method="POST">
+                        {{csrf_field()}}
+                        <div class="form-group" style="margin: 10px">
+                            <textarea name="comment" class="form-control" placeholder="Nhập bình luận của bạn tại đây"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-default pull-right" style="margin-right: 15px">Gửi Bình Luận</button>
+                    </form>
+                    @else
+                        <p style="margin-left: 15px;font-style: italic"><b>Vui Lòng Đăng Nhập Để Có Thể Bình Luận</b></p>
+                    @endif
+
             </div>
         </div>
-
     </div>
 </div><!--/category-tab-->
     @endforeach
@@ -129,4 +193,22 @@
             </a>
         </div>
     </div><!--/recommended_items-->
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".reply-link").click(function(event){
+                event.preventDefault();
+                $(".reply-container").toggle();
+            });
+        });
+    </script>
+    <style>
+        ul.pagination {
+            margin-top: 15px;
+            background: white;
+            border: none;
+        }
+    </style>
+
 @endsection

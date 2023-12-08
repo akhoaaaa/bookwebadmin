@@ -108,7 +108,7 @@
                                         <li><a href="blog.html">Blog List</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="contact-us.html">Liên Hệ</a></li>
+                                <li><a href="{{URL::to('')}}">Liên Hệ</a></li>
                             </ul>
                         </div>
                     </div>
@@ -116,7 +116,7 @@
                         <form action="{{URL::to('/tim-kiem')}}" method="post">
                             {{csrf_field()}}
                         <div class="search_box pull-right">
-                            <input name="keywords_submit" type="text" placeholder="Nhập sản phẩm cần tìm" style="font-weight: bold"/>
+                            <input name="keywords_submit" type="text" placeholder="Nhập sản phẩm cần tìm"/>
                             <input type="submit" name="search_items" class="btn btn-info btn-sm" value="Tìm kiếm">
                         </div>
                         </form>
@@ -187,7 +187,7 @@
 
     <section>
         <div class="container-fluid" style="background: #F5F5F5">
-            <div class="row justify-content-center">
+            <div class="row justify-content-center" style="margin-left: 50px;margin-right: 50px">
                 <div class="col-sm-12">
 
                     @yield('content')

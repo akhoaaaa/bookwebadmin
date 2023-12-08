@@ -42,7 +42,7 @@ class ResetPassController extends Controller
                 'token' => $token,
                 'token_time' => $token_time,
             ]);
-        $link = "<a href='http://172.26.32.1:80/bookstoreweb/reset_pass.php?key=" . $email . "&token=" . $token . "'>Đặt lại mật khẩu</a>";
+        $link = "<a href='http://192.168.1.161:80/bookstoreweb/reset_pass.php?key=" . $email . "&token=" . $token . "'>Đặt lại mật khẩu</a>";
 
         // Tạo một PHPMailer instance
         $mailer = new PHPMailer(true);
@@ -58,7 +58,7 @@ class ResetPassController extends Controller
         $mailer->setFrom('hakcheck3@gmail.com', 'BookStore');
         $mailer->addAddress($email);
         $mailer->Subject = 'Book Store Reset Pass';
-        $mailer->Body = "Nhấn vào liên kết sau để đặt lại mật khẩu: " . $link;
+        $mailer->Body = "Nhấn vào liên kết sau để đặt lại mật khẩu: " .$link;
         // Gửi email
         if ($mailer->send()) {
             return Redirect::to('/login')->with('message', 'Bạn đã yêu cầu reset mật khẩu. Vui lòng kiểm tra email của bạn.');
