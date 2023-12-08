@@ -1,3 +1,19 @@
+# Một số hình ảnh trong ứng dụng
+
+## Một số chức năng của admin
+![Chức năng admin](https://github.com/akhoaaaa/bookwebadmin/assets/133301816/7a8e189e-4ab8-478b-a5a3-a50707a1cf7c.png)
+
+## Giao diện trang chủ
+![Giao diện trang chủ](https://github.com/akhoaaaa/bookwebadmin/assets/133301816/86184b54-ae48-4415-92ad-3834a773cad3.png)
+
+## Giao diện của user
+![Giao diện user](https://github.com/akhoaaaa/bookwebadmin/assets/133301816/193c3d01-6225-4c75-a022-ca6b13c2bf1c.png)
+Điều này giúp tạo ra các đoạn văn bản tương ứng với mỗi hình ảnh và thêm dòng trắng giữa 
+
+
+
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
